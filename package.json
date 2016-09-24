@@ -1,0 +1,33 @@
+{
+  "name": "blast-off",
+  "version": "1.0.0",
+  "description": "A fast-paced multiplayer web game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aerze/blast-off.git"
+  },
+  "author": "Gus Suarez <gus@mythril.co>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aerze/blast-off/issues"
+  },
+  "homepage": "https://github.com/aerze/blast-off#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "dotenv": "^2.0.0",
+    "express": "^4.14.0",
+    "morgan": "^1.7.0",
+    "socket.io": "^1.4.8"
+  },
+  "devDependencies": {
+    "eslint": "^3.6.0",
+    "eslint-config-airbnb": "^11.1.0",
+    "eslint-plugin-import": "^1.16.0",
+    "eslint-plugin-jsx-a11y": "^2.2.2",
+    "eslint-plugin-react": "^6.3.0"
+  }
+}
