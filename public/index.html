@@ -11,6 +11,16 @@
   <script src="/socket.io/socket.io.js"></script>
   <script>
     var socket = io();
+    var messageEmitter = function emitter(data) {
+      socket.emit('message', data);
+    };
+    var messageHandler = function handler(data) {
+      console.log(data);
+    };
+
+    socket.on('message', messageHandler);
+
+
   </script>
 </body>
 </html>

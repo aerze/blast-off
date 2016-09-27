@@ -1,9 +1,7 @@
 
 const LIST = [];
 
-const mini = (socket) => {
-  return socket.id;
-};
+const mini = socket => socket.id;
 
 const Sockets = {
   add(socket) {
@@ -15,7 +13,11 @@ const Sockets = {
   remove(socket) {
     LIST[socket.index] = {};
     console.log('Removing', LIST.map(mini));
-  }
+  },
+
+  messageHandler(data) {
+    console.log(data);
+  },
 };
 
 module.exports = {
@@ -25,7 +27,10 @@ module.exports = {
       Sockets.remove(socket);
     });
 
+    socket.on('message', Sockets.messageHandler);
+
     console.log('USER: Connected');
     Sockets.add(socket);
+    socket.broadcast.emit('message', { join: socket.id });
   }
 };
