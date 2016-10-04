@@ -25,11 +25,25 @@ const Home = () => (
         </div>
       </div>
     </div>
-    <Link to="/create"> Create Game </Link>
-    <br />
-    <Link to="/join"> Join Game </Link>
-    <br />
-    <Link to="/profile"> Edit Profile </Link>
+    <div className="menu">
+      <div className="button">
+        <div className="link">
+          <Link to="/create"> CREATE GAME </Link>
+        </div>
+      </div>
+
+      <div className="button">
+        <div className="link">
+          <Link to="/join"> JOIN GAME </Link>
+        </div>
+      </div>
+
+      <div className="button">
+        <div className="link">
+          <Link to="/profile"> EDIT PROFILE </Link>
+        </div>
+      </div>
+    </div>
   </div>
 );
 

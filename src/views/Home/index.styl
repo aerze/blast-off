@@ -6,6 +6,8 @@ spaceOrange = #ffa500;
 
 
 .Home
+  margin-top: -45px;
+
   .logo
     font-size: 3em;
     padding-top: 1em;
@@ -59,22 +61,64 @@ spaceOrange = #ffa500;
       .dash-off-blue
         background: spaceBlue;
         transform: translate(165px, -60px);
+        width: 300%;
 
       .dash-off-red
         background: spaceRed;
         transform: translate(175px, -60px);
+        width: 300%;
 
       .dash-off-yellow
         background: spaceYellow;
         transform: translate(170px, -60px);
+        width: 300%;
 
       .dash-off-green
         background: spaceGreen;
         transform: translate(165px, -60px);
+        width: 300%;
 
       .dash-off-orange
         background: spaceOrange;
         transform: translate(145px, -60px);
+        width: 300%;
 
       h1
         margin: -0.3em;
+
+  .menu
+    margin-top: -90px;
+    margin-left: -40px;
+
+    .button
+      width: 300%;
+      margin-bottom: 15px;
+
+      .link
+        padding-left: 50px;
+
+        a
+          transform: rotate(-14deg);
+          background: spaceBlue;
+          text-decoration: none;
+          color: white;
+          display: block;
+          padding-left: 0.5em;
+          font-size: 2.1em;
+
+          transition-timing-function: ease-in;
+          transition: transform .2s;
+
+          &:active, &:hover
+            background: spaceGreen;
+            transform: rotate(-14deg) translateX(-500px);
+
+        @media (min-width: 360px)
+          a
+            padding-left: 0.5em;
+            font-size: 2.5em;
+
+        @media (min-width: 410px)
+          a
+            padding-left: 0.5em;
+            font-size: 3em;

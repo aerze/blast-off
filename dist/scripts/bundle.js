@@ -27488,21 +27488,47 @@
 	      )
 	    ),
 	    _react2.default.createElement(
-	      _reactRouter.Link,
-	      { to: '/create' },
-	      ' Create Game '
-	    ),
-	    _react2.default.createElement('br', null),
-	    _react2.default.createElement(
-	      _reactRouter.Link,
-	      { to: '/join' },
-	      ' Join Game '
-	    ),
-	    _react2.default.createElement('br', null),
-	    _react2.default.createElement(
-	      _reactRouter.Link,
-	      { to: '/profile' },
-	      ' Edit Profile '
+	      'div',
+	      { className: 'menu' },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'button' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'link' },
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: '/create' },
+	            ' CREATE GAME '
+	          )
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'button' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'link' },
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: '/join' },
+	            ' JOIN GAME '
+	          )
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'button' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'link' },
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: '/profile' },
+	            ' EDIT PROFILE '
+	          )
+	        )
+	      )
 	    )
 	  );
 	};
@@ -27827,7 +27853,7 @@
 
 
 	// module
-	exports.push([module.id, ".Home .logo {\n  font-size: 3em;\n  padding-top: 1em;\n  width: 320px;\n}\n.Home .logo .rotate {\n  transform: rotate(-14deg);\n}\n.Home .logo .rotate .blast {\n  text-align: left;\n  padding-left: 0.6em;\n  position: relative;\n  z-index: 3000;\n}\n.Home .logo .rotate .off {\n  text-align: right;\n  padding-right: 0.6em;\n  position: relative;\n  z-index: 3000;\n}\n.Home .logo .rotate .dash {\n  height: 13.5px;\n  width: 100%;\n  display: block;\n  opacity: 0.7;\n  content: '';\n  position: relative;\n  z-index: 2000;\n}\n.Home .logo .rotate .dash-blast-blue {\n  background: #4e87de;\n  transform: translate(-138px, 60px);\n}\n.Home .logo .rotate .dash-blast-red {\n  background: #da4638;\n  transform: translate(-146px, 60px);\n}\n.Home .logo .rotate .dash-blast-yellow {\n  background: #f9de2b;\n  transform: translate(-154px, 60px);\n}\n.Home .logo .rotate .dash-blast-green {\n  background: #4fa20f;\n  transform: translate(-160px, 60px);\n}\n.Home .logo .rotate .dash-blast-orange {\n  background: #ffa500;\n  transform: translate(-165px, 60px);\n}\n.Home .logo .rotate .dash-off-blue {\n  background: #4e87de;\n  transform: translate(165px, -60px);\n}\n.Home .logo .rotate .dash-off-red {\n  background: #da4638;\n  transform: translate(175px, -60px);\n}\n.Home .logo .rotate .dash-off-yellow {\n  background: #f9de2b;\n  transform: translate(170px, -60px);\n}\n.Home .logo .rotate .dash-off-green {\n  background: #4fa20f;\n  transform: translate(165px, -60px);\n}\n.Home .logo .rotate .dash-off-orange {\n  background: #ffa500;\n  transform: translate(145px, -60px);\n}\n.Home .logo .rotate h1 {\n  margin: -0.3em;\n}\n", ""]);
+	exports.push([module.id, ".Home {\n  margin-top: -45px;\n}\n.Home .logo {\n  font-size: 3em;\n  padding-top: 1em;\n  width: 320px;\n}\n.Home .logo .rotate {\n  transform: rotate(-14deg);\n}\n.Home .logo .rotate .blast {\n  text-align: left;\n  padding-left: 0.6em;\n  position: relative;\n  z-index: 3000;\n}\n.Home .logo .rotate .off {\n  text-align: right;\n  padding-right: 0.6em;\n  position: relative;\n  z-index: 3000;\n}\n.Home .logo .rotate .dash {\n  height: 13.5px;\n  width: 100%;\n  display: block;\n  opacity: 0.7;\n  content: '';\n  position: relative;\n  z-index: 2000;\n}\n.Home .logo .rotate .dash-blast-blue {\n  background: #4e87de;\n  transform: translate(-138px, 60px);\n}\n.Home .logo .rotate .dash-blast-red {\n  background: #da4638;\n  transform: translate(-146px, 60px);\n}\n.Home .logo .rotate .dash-blast-yellow {\n  background: #f9de2b;\n  transform: translate(-154px, 60px);\n}\n.Home .logo .rotate .dash-blast-green {\n  background: #4fa20f;\n  transform: translate(-160px, 60px);\n}\n.Home .logo .rotate .dash-blast-orange {\n  background: #ffa500;\n  transform: translate(-165px, 60px);\n}\n.Home .logo .rotate .dash-off-blue {\n  background: #4e87de;\n  transform: translate(165px, -60px);\n  width: 300%;\n}\n.Home .logo .rotate .dash-off-red {\n  background: #da4638;\n  transform: translate(175px, -60px);\n  width: 300%;\n}\n.Home .logo .rotate .dash-off-yellow {\n  background: #f9de2b;\n  transform: translate(170px, -60px);\n  width: 300%;\n}\n.Home .logo .rotate .dash-off-green {\n  background: #4fa20f;\n  transform: translate(165px, -60px);\n  width: 300%;\n}\n.Home .logo .rotate .dash-off-orange {\n  background: #ffa500;\n  transform: translate(145px, -60px);\n  width: 300%;\n}\n.Home .logo .rotate h1 {\n  margin: -0.3em;\n}\n.Home .menu {\n  margin-top: -90px;\n  margin-left: -40px;\n}\n.Home .menu .button {\n  width: 300%;\n  margin-bottom: 15px;\n}\n.Home .menu .button .link {\n  padding-left: 50px;\n}\n.Home .menu .button .link a {\n  transform: rotate(-14deg);\n  background: #4e87de;\n  text-decoration: none;\n  color: #fff;\n  display: block;\n  padding-left: 0.5em;\n  font-size: 2.1em;\n  transition-timing-function: ease-in;\n  transition: transform 0.2s;\n}\n.Home .menu .button .link a:active,\n.Home .menu .button .link a:hover {\n  background: #4fa20f;\n  transform: rotate(-14deg) translateX(-500px);\n}\n@media (min-width: 360px) {\n  .Home .menu .button .link a {\n    padding-left: 0.5em;\n    font-size: 2.5em;\n  }\n}\n@media (min-width: 410px) {\n  .Home .menu .button .link a {\n    padding-left: 0.5em;\n    font-size: 3em;\n  }\n}\n", ""]);
 
 	// exports
 
