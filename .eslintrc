@@ -3,6 +3,8 @@
   "rules": {
     "new-cap": 0,
     "no-console": 0,
-    "comma-dangle": 0
+    "comma-dangle": 0,
+
+    "react/forbid-prop-types": 0
   }
 }

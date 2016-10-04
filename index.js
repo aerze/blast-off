@@ -30,6 +30,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // attach custom routes
 app.use('/', express.static(path.join(__dirname, 'public')));
+app.use('/client', express.static(path.join(__dirname, 'dist')));
 app.use('/users', usersRouter);
 
 // attach io events
