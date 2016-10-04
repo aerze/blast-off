@@ -1,2 +1,45 @@
 .Home
-  background green
+  .logo
+    font-size: 3em;
+    padding-top: 1em;
+
+    .rotate
+      transform: rotate(-14deg);
+
+      .blast
+        text-align: left;
+        padding-left: .6em;
+
+      .off
+        text-align: right;
+        padding-right: .6em;
+        position: relative;
+        z-index: 3000;
+
+      .dash
+        height: 12px;
+        width: 100%;
+        display: block;
+        opacity: 0.7;
+        content: '';
+        position: relative;
+        z-index: 2000;
+
+      .dash-blue
+        background: #4e87de;
+        transform: translate(190px, -42px);
+
+      .dash-red
+        background: #da4638;
+        transform: translate(180px, -42px);
+
+      .dash-yellow
+        background: #f9de2b;
+        transform: translate(170px, -42px);
+
+      .dash-green
+        background: #4fa20f;
+        transform: translate(160px, -42px);
+
+      h1
+        margin: -0.3em;
