@@ -27458,9 +27458,18 @@
 	        'div',
 	        { className: 'rotate' },
 	        _react2.default.createElement(
-	          'h1',
-	          { className: 'blast' },
-	          ' BLAST '
+	          'div',
+	          null,
+	          _react2.default.createElement('div', { className: 'dash dash-blast-blue' }),
+	          _react2.default.createElement('div', { className: 'dash dash-blast-red' }),
+	          _react2.default.createElement('div', { className: 'dash dash-blast-yellow' }),
+	          _react2.default.createElement('div', { className: 'dash dash-blast-green' }),
+	          _react2.default.createElement('div', { className: 'dash dash-blast-orange' }),
+	          _react2.default.createElement(
+	            'h1',
+	            { className: 'blast' },
+	            ' BLAST '
+	          )
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -27470,10 +27479,11 @@
 	            { className: 'off' },
 	            ' OFF '
 	          ),
-	          _react2.default.createElement('div', { className: 'dash dash-blue' }),
-	          _react2.default.createElement('div', { className: 'dash dash-red' }),
-	          _react2.default.createElement('div', { className: 'dash dash-yellow' }),
-	          _react2.default.createElement('div', { className: 'dash dash-green' })
+	          _react2.default.createElement('div', { className: 'dash dash-off-blue' }),
+	          _react2.default.createElement('div', { className: 'dash dash-off-red' }),
+	          _react2.default.createElement('div', { className: 'dash dash-off-yellow' }),
+	          _react2.default.createElement('div', { className: 'dash dash-off-green' }),
+	          _react2.default.createElement('div', { className: 'dash dash-off-orange' })
 	        )
 	      )
 	    ),
@@ -27817,7 +27827,7 @@
 
 
 	// module
-	exports.push([module.id, ".Home .logo {\n  font-size: 3em;\n  padding-top: 1em;\n}\n.Home .logo .rotate {\n  transform: rotate(-14deg);\n}\n.Home .logo .rotate .blast {\n  text-align: left;\n  padding-left: 0.6em;\n}\n.Home .logo .rotate .off {\n  text-align: right;\n  padding-right: 0.6em;\n  position: relative;\n  z-index: 3000;\n}\n.Home .logo .rotate .dash {\n  height: 12px;\n  width: 100%;\n  display: block;\n  opacity: 0.7;\n  content: '';\n  position: relative;\n  z-index: 2000;\n}\n.Home .logo .rotate .dash-blue {\n  background: #4e87de;\n  transform: translate(190px, -42px);\n}\n.Home .logo .rotate .dash-red {\n  background: #da4638;\n  transform: translate(180px, -42px);\n}\n.Home .logo .rotate .dash-yellow {\n  background: #f9de2b;\n  transform: translate(170px, -42px);\n}\n.Home .logo .rotate .dash-green {\n  background: #4fa20f;\n  transform: translate(160px, -42px);\n}\n.Home .logo .rotate h1 {\n  margin: -0.3em;\n}\n", ""]);
+	exports.push([module.id, ".Home .logo {\n  font-size: 3em;\n  padding-top: 1em;\n  width: 320px;\n}\n.Home .logo .rotate {\n  transform: rotate(-14deg);\n}\n.Home .logo .rotate .blast {\n  text-align: left;\n  padding-left: 0.6em;\n  position: relative;\n  z-index: 3000;\n}\n.Home .logo .rotate .off {\n  text-align: right;\n  padding-right: 0.6em;\n  position: relative;\n  z-index: 3000;\n}\n.Home .logo .rotate .dash {\n  height: 13.5px;\n  width: 100%;\n  display: block;\n  opacity: 0.7;\n  content: '';\n  position: relative;\n  z-index: 2000;\n}\n.Home .logo .rotate .dash-blast-blue {\n  background: #4e87de;\n  transform: translate(-138px, 60px);\n}\n.Home .logo .rotate .dash-blast-red {\n  background: #da4638;\n  transform: translate(-146px, 60px);\n}\n.Home .logo .rotate .dash-blast-yellow {\n  background: #f9de2b;\n  transform: translate(-154px, 60px);\n}\n.Home .logo .rotate .dash-blast-green {\n  background: #4fa20f;\n  transform: translate(-160px, 60px);\n}\n.Home .logo .rotate .dash-blast-orange {\n  background: #ffa500;\n  transform: translate(-165px, 60px);\n}\n.Home .logo .rotate .dash-off-blue {\n  background: #4e87de;\n  transform: translate(165px, -60px);\n}\n.Home .logo .rotate .dash-off-red {\n  background: #da4638;\n  transform: translate(175px, -60px);\n}\n.Home .logo .rotate .dash-off-yellow {\n  background: #f9de2b;\n  transform: translate(170px, -60px);\n}\n.Home .logo .rotate .dash-off-green {\n  background: #4fa20f;\n  transform: translate(165px, -60px);\n}\n.Home .logo .rotate .dash-off-orange {\n  background: #ffa500;\n  transform: translate(145px, -60px);\n}\n.Home .logo .rotate h1 {\n  margin: -0.3em;\n}\n", ""]);
 
 	// exports
 

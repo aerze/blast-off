@@ -7,13 +7,21 @@ const Home = () => (
   <div className="Home">
     <div className="logo">
       <div className="rotate">
-        <h1 className="blast"> BLAST </h1>
+        <div>
+          <div className="dash dash-blast-blue" />
+          <div className="dash dash-blast-red" />
+          <div className="dash dash-blast-yellow" />
+          <div className="dash dash-blast-green" />
+          <div className="dash dash-blast-orange" />
+          <h1 className="blast"> BLAST </h1>
+        </div>
         <div>
           <h1 className="off"> OFF </h1>
-          <div className="dash dash-blue" />
-          <div className="dash dash-red" />
-          <div className="dash dash-yellow" />
-          <div className="dash dash-green" />
+          <div className="dash dash-off-blue" />
+          <div className="dash dash-off-red" />
+          <div className="dash dash-off-yellow" />
+          <div className="dash dash-off-green" />
+          <div className="dash dash-off-orange" />
         </div>
       </div>
     </div>

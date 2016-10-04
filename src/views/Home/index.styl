@@ -1,7 +1,15 @@
+spaceBlue = #4e87de;
+spaceRed = #da4638;
+spaceYellow = #f9de2b;
+spaceGreen = #4fa20f;
+spaceOrange = #ffa500;
+
+
 .Home
   .logo
     font-size: 3em;
     padding-top: 1em;
+    width: 320px;
 
     .rotate
       transform: rotate(-14deg);
@@ -9,6 +17,8 @@
       .blast
         text-align: left;
         padding-left: .6em;
+        position: relative;
+        z-index: 3000;
 
       .off
         text-align: right;
@@ -17,7 +27,7 @@
         z-index: 3000;
 
       .dash
-        height: 12px;
+        height: 13.5px;
         width: 100%;
         display: block;
         opacity: 0.7;
@@ -25,21 +35,46 @@
         position: relative;
         z-index: 2000;
 
-      .dash-blue
-        background: #4e87de;
-        transform: translate(190px, -42px);
+      .dash-blast-blue
+        background: spaceBlue;
+        transform: translate(-138px, 60px);
 
-      .dash-red
-        background: #da4638;
-        transform: translate(180px, -42px);
+      .dash-blast-red
+        background: spaceRed;
+        transform: translate(-146px, 60px);
 
-      .dash-yellow
-        background: #f9de2b;
-        transform: translate(170px, -42px);
+      .dash-blast-yellow
+        background: spaceYellow;
+        transform: translate(-154px, 60px);
 
-      .dash-green
-        background: #4fa20f;
-        transform: translate(160px, -42px);
+      .dash-blast-green
+        background: spaceGreen;
+        transform: translate(-160px, 60px);
+
+      .dash-blast-orange
+        background: spaceOrange;
+        transform: translate(-165px, 60px);
+
+
+      .dash-off-blue
+        background: spaceBlue;
+        transform: translate(165px, -60px);
+
+      .dash-off-red
+        background: spaceRed;
+        transform: translate(175px, -60px);
+
+      .dash-off-yellow
+        background: spaceYellow;
+        transform: translate(170px, -60px);
+
+      .dash-off-green
+        background: spaceGreen;
+        transform: translate(165px, -60px);
+
+      .dash-off-orange
+        background: spaceOrange;
+        transform: translate(145px, -60px);
 
       h1
         margin: -0.3em;
