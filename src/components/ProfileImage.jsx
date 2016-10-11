@@ -2,7 +2,8 @@ import React, { PropTypes } from 'react';
 
 const face = (number) => {
   const bool = Math.round(Math.random() * 10) >= 5;
-  const gender = bool ? 'men' : 'women';
+  // const gender = bool ? 'men' : 'women';
+  const gender = 'lego';
   return `https://randomuser.me/api/portraits/${gender}/${number}.jpg`;
 };
 
@@ -18,7 +19,7 @@ const defaultStyle = {
 };
 
 const ProfileImage = ({ style = defaultStyle }) => {
-  const source = face(randInt(0, 80));
+  const source = face(randInt(0, 7));
   return (
     <div style={{ display: 'inline-block' }}>
       <img style={style} alt="User Profile" src={source} />

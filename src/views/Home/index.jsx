@@ -1,9 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import { increase, decrease } from '../../actions/todoActions';
 
 import './index.styl';
 
-const Home = () => (
+const Home = ({ number, inc, dec }) => (
   <div className="Home">
     <div className="logo">
       <div className="rotate">
@@ -47,4 +49,18 @@ const Home = () => (
   </div>
 );
 
-module.exports = Home;
+Home.propTypes = {
+  number: React.PropTypes.number,
+  inc: React.PropTypes.func,
+  dec: React.PropTypes.func
+};
+
+export default connect(
+  // map state to props
+  (state) => {
+    console.log(state);
+    return { number: state.todoApp.number };
+  },
+  // map actions to props
+  { increase, decrease }
+)(Home);

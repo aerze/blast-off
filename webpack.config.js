@@ -13,14 +13,21 @@ module.exports = {
         test: /.jsx?$/,
         loader: 'babel-loader',
         exclude: /node-modules/,
-        query: {
-          presets: ['es2015', 'react']
-        }
       },
       {
         test: /\.styl$/,
         loader: 'style-loader!css-loader!stylus-loader'
       }
     ]
-  }
+  },
+
+  externals: {
+    forerunnerdb: 'ForerunnerDB'
+  },
+
+  plugins: [
+      // new webpack.optimize.UglifyJsPlugin({minimize: true, sourceMap: true}),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(true)
+  ]
 };

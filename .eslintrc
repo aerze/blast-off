@@ -1,10 +1,16 @@
 {
   "extends": "airbnb",
+  "parser": "babel-eslint",
+  "env": {
+      "browser": true,
+      "node": true
+  },
   "rules": {
     "new-cap": 0,
     "no-console": 0,
     "comma-dangle": 0,
 
-    "react/forbid-prop-types": 0
+    "react/forbid-prop-types": 0,
+    "react/prefer-es6-class": 0
   }
 }

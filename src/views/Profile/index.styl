@@ -1,0 +1,107 @@
+spaceBlue = #4e87de
+spaceRed = #da4638
+spaceYellow = #f9de2b
+spaceGreen = #4fa20f
+spaceOrange = #ffa500
+
+.Profile
+
+  .title
+    position: absolute
+    padding-top: .5em
+    color: white
+
+    .rotate
+      transform: rotate(-14deg)
+      width: 200%
+
+      h1
+        width: 250px
+        position: relative
+        font-size: 2em;
+        font-family: 'Raleway', sans-serif
+        font-style: italic
+        font-weight: bold
+
+  .camera
+    width: 100%
+    height: 60%
+    background: spaceGreen
+    position: absolute
+
+    .profileVideo
+      margin: 60px auto;
+      width: 250px
+      height: 250px
+      border-radius: 125px
+      -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%)
+
+      video
+        width: 500px;
+        height: 500px;
+        position: absolute;
+        top: -125px;
+        left: -125px;
+
+    .image
+      height: 100%;
+
+    .profileImage
+      position: absolute
+      // bottom: 15px
+      // right: 20px
+      border-radius: 50%
+      width: 100%
+      height: 100%
+
+    .cameraIcon
+      -webkit-appearance: none
+      position: absolute
+      border-radius: 15px
+      background: spaceGreen
+      border: none
+      bottom: 15px
+      right: 20px
+      &:focus
+        outline: none
+
+  .menu
+    position: absolute
+    margin-top: 0px
+    margin-left: -40px
+    bottom: 20%
+
+    .button
+      width: 300%
+      margin-bottom: 15px
+
+      .link
+        padding-left: 50px
+
+        a
+          transform: rotate(-14deg)
+          background: spaceBlue
+          text-decoration: none
+          color: white
+          display: block
+          padding-left: 0.5em
+          font-size: 2.1em
+
+          transition-timing-function: ease-in
+          transition: transform .2s
+
+          &:active, &:hover
+            background: spaceGreen
+            transform: rotate(-14deg) translateX(-500px)
+
+        @media (min-width: 360px)
+          a
+            padding-left: 0.5em
+            font-size: 2.5em
+
+        @media (min-width: 410px)
+          a
+            padding-left: 0.5em
+            font-size: 3em
+
+
