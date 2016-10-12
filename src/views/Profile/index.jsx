@@ -15,20 +15,12 @@ navigator.getUserMedia = navigator.getUserMedia
 const Profile = React.createClass({
   getInitialState() {
     return {
-      status: 'PROFILE:VIEW',
+      status: 'VIEW',
+      title: 'Edit your Profile',
       camera: '',
       imageSrc: 'https://randomuser.me/api/portraits/lego/1.jpg',
       userName: 'aerze'
     };
-  },
-
-  componentWillMount() {
-    // const test = localCtrl.profile.get();
-    // console.log('get', test);
-  },
-
-  componentWillUnmount() {
-
   },
 
   enableCamera() {
@@ -36,83 +28,92 @@ const Profile = React.createClass({
     const context = canvas.getContext('2d');
     const video = this.video;
 
-    navigator.getUserMedia(
-      { video: true },
-      (stream) => {
-        this.stream = stream;
-        this.streamSrc = window.URL.createObjectURL(stream);
-        this.setState({ stream: 'READY' });
-        video.width = video.videoWidth;
-      },
-      () => {
-        this.setState({ stream: 'FAILED' });
-      });
-    this.drawImage = context.drawImage;
+    const UserMediaSettings = { video: true };
+    function setVideoWidth() { video.width = video.videoWidth; }
+
+    const onMediaError = () => this.setState({ stream: 'FAILED' });
+    const onMediaSuccess = (stream) => {
+      this.stream = stream;
+      this.streamSrc = window.URL.createObjectURL(stream);
+      this.setState({ stream: 'READY' });
+      video.addEventListener('loadedmetadata', setVideoWidth);
+    };
+
+    navigator.getUserMedia(UserMediaSettings, onMediaSuccess, onMediaError);
 
     this.takePic = () => {
-      const videoWidth = video.videoWidth;
-      const videoHeight = video.videoHeight;
+      const { videoWidth, videoHeight } = video;
+
       canvas.width = videoWidth;
       canvas.height = videoHeight;
       context.drawImage(video, 0, 0, videoWidth, videoHeight);
+
       this.setState({
         imageSrc: canvas.toDataURL(),
-        status: 'PROFILE:VIEW'
+        status: 'VIEW',
+        title: 'Snazzy!'
       });
     };
-    // Trigger photo take
-    // document.getElementById("snap").addEventListener("click", function() {
-    //   context.drawImage(video, 0, 0, 640, 480);
-    // });
 
     this.setState({
       stream: 'LOADING'
     });
   },
 
-  handleClick() {
-    if (this.state.status === 'PROFILE:VIEW') {
-      this.setState({ status: 'PROFILE:EDIT' });
-    } else {
-      this.setState({ status: 'PROFILE:VIEW' });
-    }
+  enableInput() {
+    this.setState({
+      status: 'EDIT:NAME',
+      title: 'Who are you!?'
+    });
+  },
+
+  disableInput(event) {
+    event.preventDefault();
+    this.setState({
+      status: 'VIEW',
+      title: 'Noice!'
+    });
+  },
+
+  updateName(event) {
+    const userName = event.target.value;
+    this.setState({
+      userName
+    });
   },
 
   renderCamera() {
     this.setState({
-      status: 'PROFILE:EDIT'
+      status: 'EDIT:PHOTO',
+      title: 'What are Thoooooose!?'
     }, this.enableCamera);
   },
 
-  renderProfile(status) {
+  renderProfile(profile) {
     const profileSrc = this.state.imageSrc;
     const image = {
-      background: `center bottom url("${profileSrc}")`,
-    }
-    const saveToInstance = (name) => {
-      return (node) => {
-        this[name] = node;
-      };
+      backgroundImage: `url("${profileSrc}")`,
     };
 
-    if (status === 'PROFILE:EDIT') {
+    if (profile === 'EDIT:PHOTO') {
       return (
-        <div className="test">
+        <div className="camera">
           <div className="profileVideo">
             <video
-              ref={saveToInstance('video')}
+              ref={(node) => { this.video = node; }}
+              className="video"
               autoPlay="true"
               src={this.streamSrc}
             />
 
             <canvas
-              ref={saveToInstance('canvas')}
+              ref={(node) => { this.canvas = node; }}
               className="canvas"
               width="500"
               height="500"
             />
           </div>
-          <button className="cameraIcon" onClick={this.takePic} >SNAP</button>
+          <button className="cameraSnapIcon" onClick={this.takePic} >SNAP</button>
         </div>
       );
     }
@@ -120,43 +121,64 @@ const Profile = React.createClass({
     return (
       <div className="image">
         <div className="profileImage" alt="profile pic">
-          <div className="image" style={image} />
+          <div className="container" style={image} />
         </div>
-        <button className="cameraIcon" onClick={this.renderCamera} >Edit</button>
+        <button className="cameraIcon" onClick={this.renderCamera} >PIC</button>
+      </div>
+    );
+  },
+
+  renderUsername() {
+    const { userName, status } = this.state;
+
+    if (status === 'EDIT:NAME') {
+      return (
+        <div className="username">
+          <button className="nameIcon" onClick={this.disableInput}>SET</button>
+          <form className="nameForm" onSubmit={this.disableInput}>
+            <input className="nameInput" type="text" onChange={this.updateName} />
+          </form>
+        </div>
+      );
+    }
+
+    return (
+      <div className="username">
+        <button className="nameIcon" onClick={this.enableInput} >EDIT</button>
+        <h1 className="name">{userName}</h1>
       </div>
     );
   },
 
   render() {
-    const title = this.state.status === 'PROFILE:VIEW'
-      ? 'Create your Profile'
-      : 'Edit your Profile';
+    const title = this.state.title;
 
     return (
       <div className="Profile">
-        <div className="camera">
-          {this.renderProfile(this.state.status)}
-        </div>
+        {this.renderProfile(this.state.status)}
 
-        {/*<div className="title">
+        <div className="title">
           <div className="rotate">
             <h1>{title.toUpperCase()}</h1>
           </div>
         </div>
 
+        { this.renderUsername() }
+
+        {/*
         <div className="menu">
           <div className="button">
             <div className="link">
               <Link to="/"> CONTINUE </Link>
             </div>
           </div>
-
           <div className="button">
             <div className="link">
               <Link to="/"> HOME </Link>
             </div>
           </div>
-        </div>*/}
+        </div>
+        */}
       </div>
     );
   }

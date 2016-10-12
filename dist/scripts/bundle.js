@@ -30084,17 +30084,13 @@
 	  displayName: 'Profile',
 	  getInitialState: function getInitialState() {
 	    return {
-	      status: 'PROFILE:VIEW',
+	      status: 'VIEW',
+	      title: 'Edit your Profile',
 	      camera: '',
 	      imageSrc: 'https://randomuser.me/api/portraits/lego/1.jpg',
 	      userName: 'aerze'
 	    };
 	  },
-	  componentWillMount: function componentWillMount() {
-	    // const test = localCtrl.profile.get();
-	    // console.log('get', test);
-	  },
-	  componentWillUnmount: function componentWillUnmount() {},
 	  enableCamera: function enableCamera() {
 	    var _this = this;
 
@@ -30102,75 +30098,95 @@
 	    var context = canvas.getContext('2d');
 	    var video = this.video;
 
-	    navigator.getUserMedia({ video: true }, function (stream) {
+	    var UserMediaSettings = { video: true };
+	    function setVideoWidth() {
+	      video.width = video.videoWidth;
+	    }
+
+	    var onMediaError = function onMediaError() {
+	      return _this.setState({ stream: 'FAILED' });
+	    };
+	    var onMediaSuccess = function onMediaSuccess(stream) {
 	      _this.stream = stream;
 	      _this.streamSrc = window.URL.createObjectURL(stream);
 	      _this.setState({ stream: 'READY' });
-	      video.width = video.videoWidth;
-	    }, function () {
-	      _this.setState({ stream: 'FAILED' });
-	    });
-	    this.drawImage = context.drawImage;
+	      video.addEventListener('loadedmetadata', setVideoWidth);
+	    };
+
+	    navigator.getUserMedia(UserMediaSettings, onMediaSuccess, onMediaError);
 
 	    this.takePic = function () {
 	      var videoWidth = video.videoWidth;
 	      var videoHeight = video.videoHeight;
+
+
 	      canvas.width = videoWidth;
 	      canvas.height = videoHeight;
 	      context.drawImage(video, 0, 0, videoWidth, videoHeight);
+
 	      _this.setState({
 	        imageSrc: canvas.toDataURL(),
-	        status: 'PROFILE:VIEW'
+	        status: 'VIEW',
+	        title: 'Snazzy!'
 	      });
 	    };
-	    // Trigger photo take
-	    // document.getElementById("snap").addEventListener("click", function() {
-	    //   context.drawImage(video, 0, 0, 640, 480);
-	    // });
 
 	    this.setState({
 	      stream: 'LOADING'
 	    });
 	  },
-	  handleClick: function handleClick() {
-	    if (this.state.status === 'PROFILE:VIEW') {
-	      this.setState({ status: 'PROFILE:EDIT' });
-	    } else {
-	      this.setState({ status: 'PROFILE:VIEW' });
-	    }
+	  enableInput: function enableInput() {
+	    this.setState({
+	      status: 'EDIT:NAME',
+	      title: 'Who are you!?'
+	    });
+	  },
+	  disableInput: function disableInput(event) {
+	    event.preventDefault();
+	    this.setState({
+	      status: 'VIEW',
+	      title: 'Noice!'
+	    });
+	  },
+	  updateName: function updateName(event) {
+	    var userName = event.target.value;
+	    this.setState({
+	      userName: userName
+	    });
 	  },
 	  renderCamera: function renderCamera() {
 	    this.setState({
-	      status: 'PROFILE:EDIT'
+	      status: 'EDIT:PHOTO',
+	      title: 'What are Thoooooose!?'
 	    }, this.enableCamera);
 	  },
-	  renderProfile: function renderProfile(status) {
+	  renderProfile: function renderProfile(profile) {
 	    var _this2 = this;
 
 	    var profileSrc = this.state.imageSrc;
 	    var image = {
-	      background: 'center bottom url("' + profileSrc + '")'
-	    };
-	    var saveToInstance = function saveToInstance(name) {
-	      return function (node) {
-	        _this2[name] = node;
-	      };
+	      backgroundImage: 'url("' + profileSrc + '")'
 	    };
 
-	    if (status === 'PROFILE:EDIT') {
+	    if (profile === 'EDIT:PHOTO') {
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'test' },
+	        { className: 'camera' },
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'profileVideo' },
 	          _react2.default.createElement('video', {
-	            ref: saveToInstance('video'),
+	            ref: function ref(node) {
+	              _this2.video = node;
+	            },
+	            className: 'video',
 	            autoPlay: 'true',
 	            src: this.streamSrc
 	          }),
 	          _react2.default.createElement('canvas', {
-	            ref: saveToInstance('canvas'),
+	            ref: function ref(node) {
+	              _this2.canvas = node;
+	            },
 	            className: 'canvas',
 	            width: '500',
 	            height: '500'
@@ -30178,7 +30194,7 @@
 	        ),
 	        _react2.default.createElement(
 	          'button',
-	          { className: 'cameraIcon', onClick: this.takePic },
+	          { className: 'cameraSnapIcon', onClick: this.takePic },
 	          'SNAP'
 	        )
 	      );
@@ -30190,26 +30206,74 @@
 	      _react2.default.createElement(
 	        'div',
 	        { className: 'profileImage', alt: 'profile pic' },
-	        _react2.default.createElement('div', { className: 'image', style: image })
+	        _react2.default.createElement('div', { className: 'container', style: image })
 	      ),
 	      _react2.default.createElement(
 	        'button',
 	        { className: 'cameraIcon', onClick: this.renderCamera },
-	        'Edit'
+	        'PIC'
+	      )
+	    );
+	  },
+	  renderUsername: function renderUsername() {
+	    var _state = this.state;
+	    var userName = _state.userName;
+	    var status = _state.status;
+
+
+	    if (status === 'EDIT:NAME') {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'username' },
+	        _react2.default.createElement(
+	          'button',
+	          { className: 'nameIcon', onClick: this.disableInput },
+	          'SET'
+	        ),
+	        _react2.default.createElement(
+	          'form',
+	          { className: 'nameForm', onSubmit: this.disableInput },
+	          _react2.default.createElement('input', { className: 'nameInput', type: 'text', onChange: this.updateName })
+	        )
+	      );
+	    }
+
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'username' },
+	      _react2.default.createElement(
+	        'button',
+	        { className: 'nameIcon', onClick: this.enableInput },
+	        'EDIT'
+	      ),
+	      _react2.default.createElement(
+	        'h1',
+	        { className: 'name' },
+	        userName
 	      )
 	    );
 	  },
 	  render: function render() {
-	    var title = this.state.status === 'PROFILE:VIEW' ? 'Create your Profile' : 'Edit your Profile';
+	    var title = this.state.title;
 
 	    return _react2.default.createElement(
 	      'div',
 	      { className: 'Profile' },
+	      this.renderProfile(this.state.status),
 	      _react2.default.createElement(
 	        'div',
-	        { className: 'camera' },
-	        this.renderProfile(this.state.status)
-	      )
+	        { className: 'title' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'rotate' },
+	          _react2.default.createElement(
+	            'h1',
+	            null,
+	            title.toUpperCase()
+	          )
+	        )
+	      ),
+	      this.renderUsername()
 	    );
 	  }
 	});
@@ -30255,7 +30319,7 @@
 
 
 	// module
-	exports.push([module.id, ".Profile .title {\n  position: absolute;\n  padding-top: 0.5em;\n  color: #fff;\n}\n.Profile .title .rotate {\n  transform: rotate(-14deg);\n  width: 200%;\n}\n.Profile .title .rotate h1 {\n  width: 250px;\n  position: relative;\n  font-size: 2em;\n  font-family: 'Raleway', sans-serif;\n  font-style: italic;\n  font-weight: bold;\n}\n.Profile .camera {\n  width: 100%;\n  height: 60%;\n  background: #4fa20f;\n  position: absolute;\n}\n.Profile .camera .profileVideo {\n  margin: 60px auto;\n  width: 250px;\n  height: 250px;\n  border-radius: 125px;\n  -webkit-mask-image: -webkit-radial-gradient(circle, #fff 100%, #000 100%);\n}\n.Profile .camera .profileVideo video {\n  width: 500px;\n  height: 500px;\n  position: absolute;\n  top: -125px;\n  left: -125px;\n}\n.Profile .camera .image {\n  height: 100%;\n}\n.Profile .camera .profileImage {\n  position: absolute;\n  border-radius: 50%;\n  width: 100%;\n  height: 100%;\n}\n.Profile .camera .cameraIcon {\n  -webkit-appearance: none;\n  position: absolute;\n  border-radius: 15px;\n  background: #4fa20f;\n  border: none;\n  bottom: 15px;\n  right: 20px;\n}\n.Profile .camera .cameraIcon:focus {\n  outline: none;\n}\n.Profile .menu {\n  position: absolute;\n  margin-top: 0px;\n  margin-left: -40px;\n  bottom: 20%;\n}\n.Profile .menu .button {\n  width: 300%;\n  margin-bottom: 15px;\n}\n.Profile .menu .button .link {\n  padding-left: 50px;\n}\n.Profile .menu .button .link a {\n  transform: rotate(-14deg);\n  background: #4e87de;\n  text-decoration: none;\n  color: #fff;\n  display: block;\n  padding-left: 0.5em;\n  font-size: 2.1em;\n  transition-timing-function: ease-in;\n  transition: transform 0.2s;\n}\n.Profile .menu .button .link a:active,\n.Profile .menu .button .link a:hover {\n  background: #4fa20f;\n  transform: rotate(-14deg) translateX(-500px);\n}\n@media (min-width: 360px) {\n  .Profile .menu .button .link a {\n    padding-left: 0.5em;\n    font-size: 2.5em;\n  }\n}\n@media (min-width: 410px) {\n  .Profile .menu .button .link a {\n    padding-left: 0.5em;\n    font-size: 3em;\n  }\n}\n", ""]);
+	exports.push([module.id, ".Profile {\n  position: relative;\n}\n.Profile .title {\n  position: absolute;\n  padding-top: 0.5em;\n  top: -46px;\n  color: #fff;\n  -webkit-text-stroke-width: 1px;\n  -webkit-text-stroke-color: #000;\n}\n.Profile .title .rotate {\n  transform: rotate(-14deg);\n  width: 200%;\n}\n.Profile .title .rotate h1 {\n  width: 250px;\n  position: relative;\n  font-size: 2em;\n  font-family: 'Raleway', sans-serif;\n  font-style: italic;\n  font-weight: bold;\n}\n.Profile .camera .profileVideo {\n  width: 100%;\n}\n.Profile .camera .profileVideo .video {\n  width: 300px;\n  height: 300px;\n  border-radius: 50%;\n  margin: 0 auto;\n  display: block;\n  object-fit: cover;\n}\n.Profile .camera .profileVideo .canvas {\n  display: none;\n}\n.Profile .image .profileImage {\n  width: 300px;\n  height: 300px;\n  margin: 0 auto;\n}\n.Profile .image .profileImage .container {\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n}\n.Profile .cameraIcon {\n  background: #4e87de;\n}\n.Profile .cameraSnapIcon {\n  background: #4fa20f;\n}\n.Profile .username .nameIcon {\n  background: #f9de2b;\n}\n.Profile .username .nameForm {\n  display: inline-block;\n  margin: 0 0 0 0.5em;\n}\n.Profile .username .nameInput {\n  display: inline-block;\n}\n.Profile .username .name {\n  display: inline-block;\n  margin: 0 0 0 0.5em;\n}\n.Profile .menu {\n  position: absolute;\n  padding-top: 0.5em;\n  bottom: -46px;\n}\n.Profile .menu .button {\n  width: 300%;\n  margin-bottom: 15px;\n}\n.Profile .menu .button .link {\n  padding-left: 50px;\n}\n.Profile .menu .button .link a {\n  transform: rotate(-14deg);\n  background: #4e87de;\n  text-decoration: none;\n  color: #fff;\n  display: block;\n  padding-left: 0.5em;\n  font-size: 2.1em;\n  transition-timing-function: ease-in;\n  transition: transform 0.2s;\n}\n.Profile .menu .button .link a:active,\n.Profile .menu .button .link a:hover {\n  background: #4fa20f;\n  transform: rotate(-14deg) translateX(-500px);\n}\n@media (min-width: 360px) {\n  .Profile .menu .button .link a {\n    padding-left: 0.5em;\n    font-size: 2.5em;\n  }\n}\n@media (min-width: 410px) {\n  .Profile .menu .button .link a {\n    padding-left: 0.5em;\n    font-size: 3em;\n  }\n}\n", ""]);
 
 	// exports
 

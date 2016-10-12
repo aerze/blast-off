@@ -5,11 +5,16 @@ spaceGreen = #4fa20f
 spaceOrange = #ffa500
 
 .Profile
+  position: relative;
 
   .title
     position: absolute
-    padding-top: .5em
-    color: white
+    padding-top: 0.5em
+    top: -46px
+    color: #fff
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+
 
     .rotate
       transform: rotate(-14deg)
@@ -24,52 +29,60 @@ spaceOrange = #ffa500
         font-weight: bold
 
   .camera
-    width: 100%
-    height: 60%
-    background: spaceGreen
-    position: absolute
-
     .profileVideo
-      margin: 60px auto;
-      width: 250px
-      height: 250px
-      border-radius: 125px
-      -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%)
-
-      video
-        width: 500px;
-        height: 500px;
-        position: absolute;
-        top: -125px;
-        left: -125px;
-
-    .image
-      height: 100%;
-
-    .profileImage
-      position: absolute
-      // bottom: 15px
-      // right: 20px
-      border-radius: 50%
       width: 100%
-      height: 100%
 
-    .cameraIcon
-      -webkit-appearance: none
-      position: absolute
-      border-radius: 15px
-      background: spaceGreen
-      border: none
-      bottom: 15px
-      right: 20px
-      &:focus
-        outline: none
+      .video
+        width: 300px
+        height: 300px
+        border-radius: 50%
+        margin: 0 auto
+        display: block
+        object-fit: cover
+
+      .canvas
+        display: none
+
+  .image
+    .profileImage
+      width: 300px
+      height: 300px
+      margin: 0 auto
+
+
+      .container
+        width: 100%
+        height: 100%
+        border-radius: 50%
+        background-position: center
+        background-repeat: no-repeat
+        background-size: cover
+
+  .cameraIcon
+    background: spaceBlue
+
+  .cameraSnapIcon
+    background: spaceGreen
+
+  .username
+    .nameIcon
+      background: spaceYellow
+
+    .nameForm
+      display: inline-block
+      margin: 0 0 0 .5em
+
+    .nameInput
+      display: inline-block
+
+    .name
+      display: inline-block
+      margin: 0 0 0 .5em
 
   .menu
     position: absolute
-    margin-top: 0px
-    margin-left: -40px
-    bottom: 20%
+    padding-top: 0.5em
+    bottom: -46px
 
     .button
       width: 300%
