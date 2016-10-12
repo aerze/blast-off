@@ -165,7 +165,6 @@ const Profile = React.createClass({
 
         { this.renderUsername() }
 
-        {/*
         <div className="menu">
           <div className="button">
             <div className="link">
@@ -178,7 +177,6 @@ const Profile = React.createClass({
             </div>
           </div>
         </div>
-        */}
       </div>
     );
   }

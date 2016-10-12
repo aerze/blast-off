@@ -30273,7 +30273,37 @@
 	          )
 	        )
 	      ),
-	      this.renderUsername()
+	      this.renderUsername(),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'menu' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'button' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'link' },
+	            _react2.default.createElement(
+	              _reactRouter.Link,
+	              { to: '/' },
+	              ' CONTINUE '
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'button' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'link' },
+	            _react2.default.createElement(
+	              _reactRouter.Link,
+	              { to: '/' },
+	              ' HOME '
+	            )
+	          )
+	        )
+	      )
 	    );
 	  }
 	});
@@ -30319,7 +30349,7 @@
 
 
 	// module
-	exports.push([module.id, ".Profile {\n  position: relative;\n}\n.Profile .title {\n  position: absolute;\n  padding-top: 0.5em;\n  top: -46px;\n  color: #fff;\n  -webkit-text-stroke-width: 1px;\n  -webkit-text-stroke-color: #000;\n}\n.Profile .title .rotate {\n  transform: rotate(-14deg);\n  width: 200%;\n}\n.Profile .title .rotate h1 {\n  width: 250px;\n  position: relative;\n  font-size: 2em;\n  font-family: 'Raleway', sans-serif;\n  font-style: italic;\n  font-weight: bold;\n}\n.Profile .camera .profileVideo {\n  width: 100%;\n}\n.Profile .camera .profileVideo .video {\n  width: 300px;\n  height: 300px;\n  border-radius: 50%;\n  margin: 0 auto;\n  display: block;\n  object-fit: cover;\n}\n.Profile .camera .profileVideo .canvas {\n  display: none;\n}\n.Profile .image .profileImage {\n  width: 300px;\n  height: 300px;\n  margin: 0 auto;\n}\n.Profile .image .profileImage .container {\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n}\n.Profile .cameraIcon {\n  background: #4e87de;\n}\n.Profile .cameraSnapIcon {\n  background: #4fa20f;\n}\n.Profile .username .nameIcon {\n  background: #f9de2b;\n}\n.Profile .username .nameForm {\n  display: inline-block;\n  margin: 0 0 0 0.5em;\n}\n.Profile .username .nameInput {\n  display: inline-block;\n}\n.Profile .username .name {\n  display: inline-block;\n  margin: 0 0 0 0.5em;\n}\n.Profile .menu {\n  position: absolute;\n  padding-top: 0.5em;\n  bottom: -46px;\n}\n.Profile .menu .button {\n  width: 300%;\n  margin-bottom: 15px;\n}\n.Profile .menu .button .link {\n  padding-left: 50px;\n}\n.Profile .menu .button .link a {\n  transform: rotate(-14deg);\n  background: #4e87de;\n  text-decoration: none;\n  color: #fff;\n  display: block;\n  padding-left: 0.5em;\n  font-size: 2.1em;\n  transition-timing-function: ease-in;\n  transition: transform 0.2s;\n}\n.Profile .menu .button .link a:active,\n.Profile .menu .button .link a:hover {\n  background: #4fa20f;\n  transform: rotate(-14deg) translateX(-500px);\n}\n@media (min-width: 360px) {\n  .Profile .menu .button .link a {\n    padding-left: 0.5em;\n    font-size: 2.5em;\n  }\n}\n@media (min-width: 410px) {\n  .Profile .menu .button .link a {\n    padding-left: 0.5em;\n    font-size: 3em;\n  }\n}\n", ""]);
+	exports.push([module.id, ".Profile {\n  position: relative;\n}\n.Profile .title {\n  position: absolute;\n  padding-top: 0.5em;\n  top: -46px;\n  color: #fff;\n  -webkit-text-stroke-width: 1px;\n  -webkit-text-stroke-color: #000;\n}\n.Profile .title .rotate {\n  transform: rotate(-14deg);\n  width: 200%;\n}\n.Profile .title .rotate h1 {\n  width: 250px;\n  position: relative;\n  font-size: 2em;\n  font-family: 'Raleway', sans-serif;\n  font-style: italic;\n  font-weight: bold;\n}\n.Profile .camera .profileVideo {\n  width: 100%;\n}\n.Profile .camera .profileVideo .video {\n  width: 300px;\n  height: 300px;\n  border-radius: 50%;\n  margin: 0 auto;\n  display: block;\n  object-fit: cover;\n}\n.Profile .camera .profileVideo .canvas {\n  display: none;\n}\n.Profile .image .profileImage {\n  width: 300px;\n  height: 300px;\n  margin: 0 auto;\n}\n.Profile .image .profileImage .container {\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n}\n.Profile .cameraIcon {\n  background: #4e87de;\n}\n.Profile .cameraSnapIcon {\n  background: #4fa20f;\n}\n.Profile .username .nameIcon {\n  background: #f9de2b;\n}\n.Profile .username .nameForm {\n  display: inline-block;\n  margin: 0 0 0 0.5em;\n}\n.Profile .username .nameInput {\n  display: inline-block;\n}\n.Profile .username .name {\n  display: inline-block;\n  margin: 0 0 0 0.5em;\n}\n.Profile .menu {\n  padding-top: 0.5em;\n  bottom: -46px;\n}\n.Profile .menu .button {\n  width: 300%;\n  margin-bottom: 15px;\n}\n.Profile .menu .button .link {\n  padding-left: 50px;\n}\n.Profile .menu .button .link a {\n  background: #4e87de;\n  text-decoration: none;\n  color: #fff;\n  display: block;\n  padding-left: 0.5em;\n  font-size: 2.1em;\n  transition-timing-function: ease-in;\n  transition: transform 0.2s;\n}\n.Profile .menu .button .link a:active,\n.Profile .menu .button .link a:hover {\n  background: #4fa20f;\n  transform: rotate(-14deg) translateX(-500px);\n}\n@media (min-width: 360px) {\n  .Profile .menu .button .link a {\n    padding-left: 0.5em;\n    font-size: 2.5em;\n  }\n}\n@media (min-width: 410px) {\n  .Profile .menu .button .link a {\n    padding-left: 0.5em;\n    font-size: 3em;\n  }\n}\n", ""]);
 
 	// exports
 
