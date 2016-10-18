@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import { enableInput, disableInput, updateName, takePicture } from '../../actions/profileActions';
 
 import './index.styl';
 
@@ -13,11 +14,24 @@ navigator.getUserMedia = navigator.getUserMedia
 
 
 const Profile = React.createClass({
+
+  propTypes: {
+
+    // state to props
+    title: React.PropTypes.string.isRequired,
+    image: React.PropTypes.string.isRequired,
+
+    // actions
+    enableInput: React.PropTypes.func.isRequired,
+    disableInput: React.PropTypes.func.isRequired,
+    updateName: React.PropTypes.func.isRequired,
+    takePicture: React.PropTypes.func.isRequired
+  },
+
   getInitialState() {
     return {
       status: 'VIEW',
       title: 'Edit your Profile',
-      camera: '',
       imageSrc: 'https://randomuser.me/api/portraits/lego/1.jpg',
       userName: 'aerze'
     };
@@ -33,7 +47,6 @@ const Profile = React.createClass({
 
     const onMediaError = () => this.setState({ stream: 'FAILED' });
     const onMediaSuccess = (stream) => {
-      this.stream = stream;
       this.streamSrc = window.URL.createObjectURL(stream);
       this.setState({ stream: 'READY' });
       video.addEventListener('loadedmetadata', setVideoWidth);
@@ -48,6 +61,7 @@ const Profile = React.createClass({
       canvas.height = videoHeight;
       context.drawImage(video, 0, 0, videoWidth, videoHeight);
 
+      this.props.takePicture(canvas.toDataURL());
       this.setState({
         imageSrc: canvas.toDataURL(),
         status: 'VIEW',
@@ -60,26 +74,8 @@ const Profile = React.createClass({
     });
   },
 
-  enableInput() {
-    this.setState({
-      status: 'EDIT:NAME',
-      title: 'Who are you!?'
-    });
-  },
-
-  disableInput(event) {
-    event.preventDefault();
-    this.setState({
-      status: 'VIEW',
-      title: 'Noice!'
-    });
-  },
-
-  updateName(event) {
-    const userName = event.target.value;
-    this.setState({
-      userName
-    });
+  updateName({ target: { value } }) {
+    this.props.updateName(value);
   },
 
   renderCamera() {
@@ -90,7 +86,8 @@ const Profile = React.createClass({
   },
 
   renderProfile(profile) {
-    const profileSrc = this.state.imageSrc;
+    // const profileSrc = this.state.imageSrc;
+    const profileSrc = this.props.image;
     const image = {
       backgroundImage: `url("${profileSrc}")`,
     };
@@ -128,14 +125,12 @@ const Profile = React.createClass({
     );
   },
 
-  renderUsername() {
-    const { userName, status } = this.state;
-
+  renderUsername({ status, name }) {
     if (status === 'EDIT:NAME') {
       return (
         <div className="username">
-          <button className="nameIcon" onClick={this.disableInput}>SET</button>
-          <form className="nameForm" onSubmit={this.disableInput}>
+          <button className="nameIcon" onClick={this.props.disableInput}>SET</button>
+          <form className="nameForm" onSubmit={this.props.disableInput}>
             <input className="nameInput" type="text" onChange={this.updateName} />
           </form>
         </div>
@@ -144,14 +139,14 @@ const Profile = React.createClass({
 
     return (
       <div className="username">
-        <button className="nameIcon" onClick={this.enableInput} >EDIT</button>
-        <h1 className="name">{userName}</h1>
+        <button className="nameIcon" onClick={this.props.enableInput} >EDIT</button>
+        <h1 className="name">{name}</h1>
       </div>
     );
   },
 
   render() {
-    const title = this.state.title;
+    const title = this.props.title;
 
     return (
       <div className="Profile">
@@ -163,7 +158,7 @@ const Profile = React.createClass({
           </div>
         </div>
 
-        { this.renderUsername() }
+        { this.renderUsername(this.props) }
 
         <div className="menu">
           <div className="button">
@@ -183,6 +178,6 @@ const Profile = React.createClass({
 });
 
 export default connect(
-  state => state,
-  {}
+  state => state.profile,
+  { enableInput, disableInput, updateName, takePicture }
 )(Profile);
